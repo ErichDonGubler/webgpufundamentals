@@ -15,7 +15,7 @@ Here's the shader
 @group(0) @binding(0) var<storage, read_write> data: array<f32>;
 
 @compute @workgroup_size(1) fn computeSomething(
-  @builtin(global_invocation_id) id: vec3<u32>
+  @builtin(global_invocation_id) id: vec3u
 ) {
   let i = id.x;
   data[i] = data[i] * 2.0;
@@ -108,11 +108,11 @@ const code = `
 @group(0) @binding(2) var<storage, read_write> globalResult: array<vec3u>;
 
 @compute @workgroup_size(${workgroupSize}) fn computeSomething(
-    @builtin(workgroup_id) workgroup_id : vec3<u32>,
-    @builtin(local_invocation_id) local_invocation_id : vec3<u32>,
-    @builtin(global_invocation_id) global_invocation_id : vec3<u32>,
+    @builtin(workgroup_id) workgroup_id : vec3u,
+    @builtin(local_invocation_id) local_invocation_id : vec3u,
+    @builtin(global_invocation_id) global_invocation_id : vec3u,
     @builtin(local_invocation_index) local_invocation_index: u32,
-    @builtin(num_workgroups) num_workgroups: vec3<u32>
+    @builtin(num_workgroups) num_workgroups: vec3u
 ) {
   // workgroup_index is similar to local_invocation_index except for
   // workgroups, not threads inside a workgroup.
@@ -318,7 +318,7 @@ Let's say you had this compute shader
 @group(0) @binding(0) var<storage, read_write> result: array<f32>;
 
 @compute @workgroup_size(32) fn computeSomething(
-    @builtin(local_invocation_id) local_invocation_id : vec3<u32>,
+    @builtin(local_invocation_id) local_invocation_id : vec3u,
 ) {
   result[0] = local_invocation_id.x;
 `;

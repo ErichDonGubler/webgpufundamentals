@@ -35,7 +35,7 @@ async function main() {
   var<workgroup> id: u32;
 
   @compute @workgroup_size(${workgroupSize}) fn computeSomething(
-      @builtin(global_invocation_id) global_invocation_id : vec3<u32>,
+      @builtin(global_invocation_id) global_invocation_id : vec3u,
   ) {
     let v = data[global_invocation_id.x];
     let i = id;

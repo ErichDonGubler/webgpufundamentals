@@ -35,11 +35,11 @@ async function main() {
   @group(0) @binding(2) var<storage, read_write> globalResult: array<vec3u>;
 
   @compute @workgroup_size(${workgroupSize}) fn computeSomething(
-      @builtin(workgroup_id) workgroup_id : vec3<u32>,
-      @builtin(local_invocation_id) local_invocation_id : vec3<u32>,
-      @builtin(global_invocation_id) global_invocation_id : vec3<u32>,
+      @builtin(workgroup_id) workgroup_id : vec3u,
+      @builtin(local_invocation_id) local_invocation_id : vec3u,
+      @builtin(global_invocation_id) global_invocation_id : vec3u,
       @builtin(local_invocation_index) local_invocation_index: u32,
-      @builtin(num_workgroups) num_workgroups: vec3<u32>
+      @builtin(num_workgroups) num_workgroups: vec3u
   ) {
     // workgroup_index is similar to local_invocation_index except for
     // workgroups, not threads inside a workgroup.
